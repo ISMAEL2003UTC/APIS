@@ -7,43 +7,32 @@ use Illuminate\Http\Request;
 
 class LugarTuristicoApiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return LugarTuristico::with(['provincia', 'tipoAtraccion'])->get();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        return LugarTuristico::create($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        return LugarTuristico::with(['provincia', 'tipoAtraccion'])
+                ->findOrFail($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $lugar = LugarTuristico::findOrFail($id);
+        $lugar->update($request->all());
+        return $lugar;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        LugarTuristico::destroy($id);
+        return response()->json(['message' => 'Lugar turístico eliminado']);
     }
 }

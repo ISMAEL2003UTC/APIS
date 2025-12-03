@@ -7,43 +7,31 @@ use Illuminate\Http\Request;
 
 class ProvinciaApiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return Provincia::all(); // GET
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        return Provincia::create($request->all()); // POST
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        return Provincia::findOrFail($id); // GET by ID
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $provincia = Provincia::findOrFail($id);
+        $provincia->update($request->all()); // PATCH
+        return $provincia;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Provincia::destroy($id); // DELETE
+        return response()->json(['message' => 'Provincia eliminada']);
     }
 }

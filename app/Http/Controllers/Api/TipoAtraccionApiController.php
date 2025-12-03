@@ -7,43 +7,31 @@ use Illuminate\Http\Request;
 
 class TipoAtraccionApiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return TipoAtraccion::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        return TipoAtraccion::create($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        return TipoAtraccion::findOrFail($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $tipo = TipoAtraccion::findOrFail($id);
+        $tipo->update($request->all());
+        return $tipo;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        TipoAtraccion::destroy($id);
+        return response()->json(['message' => 'Tipo de atracción eliminado']);
     }
 }
