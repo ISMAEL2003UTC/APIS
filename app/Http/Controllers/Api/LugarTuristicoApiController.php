@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\LugarTuristico;
+
 use Illuminate\Http\Request;
 
 class LugarTuristicoApiController extends Controller

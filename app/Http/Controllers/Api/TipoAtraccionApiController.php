@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+
+use App\Models\TipoAtraccion;
+
 use Illuminate\Http\Request;
 
 class TipoAtraccionApiController extends Controller
